@@ -17,6 +17,7 @@ An oscilloscope is a crucial instrument used in electronics to visualize and ana
 
 •	Analog Oscilloscopes: These use cathode ray tubes (CRTs) to display signals. They are known for their continuous signal representation but are largely obsolete due to digital advancements.
 •	Digital Oscilloscopes: These capture and digitize signals using analog-to-digital converters (ADCs). They offer advanced features like storage, signal processing, and multiple trigger options, making them more versatile and widely used today.
+
 ![Alt text](https://github.com/Rohan-Ghorpade/SmartPhone_Oscilloscope/blob/b3ae37bd45f7daddf93e395d8f62f080b0f9a5c2/cro_Cathode%20Ray%20Oscilloscope.jpg)
 
 ### 3. Key Parameters
@@ -36,6 +37,7 @@ An oscilloscope is a crucial instrument used in electronics to visualize and ana
 •	Square Wave: Characterized by abrupt transitions between high and low states, useful for digital circuit testing and timing applications.
 •	Triangular Wave: Linear ramp up and down, often used in signal modulation and audio testing.
 •	Sawtooth Wave: Characterized by a linear rise and abrupt fall, used in applications like sweep generators and certain types of modulation.
+
 ![Alt text](https://github.com/Rohan-Ghorpade/SmartPhone_Oscilloscope/blob/d58ba2e1a86746ffe3f32725d70364357fa39bdf/waveforms.jpg)
 
 
@@ -93,6 +95,7 @@ o	Essential for connecting different components together on the breadboard and b
  
 ### About Arduino Nano
 The Arduino Nano is a small, compact microcontroller board designed for embedded systems and electronics projects. It is one of the most popular and widely used Arduino boards due to its size, versatility, and ease of use. The Arduino Nano is ideal for applications where space is limited but full microcontroller functionality is needed.
+
 ![Alt text](https://github.com/Rohan-Ghorpade/SmartPhone_Oscilloscope/blob/a9cbceeff0ef351e66eb68842ed07c3cacf5e822/arduino_nano.jpg)
 
 
@@ -130,6 +133,7 @@ The Arduino Nano is a powerful, flexible microcontroller board that strikes a ba
 
 
 ## wiring diagram
+
 ![Alt text](https://github.com/Rohan-Ghorpade/SmartPhone_Oscilloscope/blob/0673c2acaec3ecddd24f816dc5e0246e280783e0/wiring.jpg)
 
 Arduino Pin	Connected to
