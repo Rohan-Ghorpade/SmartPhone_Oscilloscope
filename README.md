@@ -9,9 +9,12 @@ Together, these projects not only provide essential tools for electronics experi
 
  
 ## Theoretical Background
-### 1. Definition and Purpose An oscilloscope is a crucial instrument used in electronics to visualize and analyze electrical signals. It displays the waveform of a signal, showing how the voltage varies over time. This visualization helps in understanding the signal's behavior, frequency, amplitude, and other key characteristics.
+### 1. Definition and Purpose
+
+An oscilloscope is a crucial instrument used in electronics to visualize and analyze electrical signals. It displays the waveform of a signal, showing how the voltage varies over time. This visualization helps in understanding the signal's behavior, frequency, amplitude, and other key characteristics.
 
 ### 2. Types of Oscilloscopes
+
 •	Analog Oscilloscopes: These use cathode ray tubes (CRTs) to display signals. They are known for their continuous signal representation but are largely obsolete due to digital advancements.
 •	Digital Oscilloscopes: These capture and digitize signals using analog-to-digital converters (ADCs). They offer advanced features like storage, signal processing, and multiple trigger options, making them more versatile and widely used today.
 ![Alt text](https://github.com/Rohan-Ghorpade/SmartPhone_Oscilloscope/blob/b3ae37bd45f7daddf93e395d8f62f080b0f9a5c2/cro_Cathode%20Ray%20Oscilloscope.jpg)
@@ -125,6 +128,102 @@ o	Hobbyists use the Arduino Nano for a wide range of DIY projects, from simple t
 ## Summary
 The Arduino Nano is a powerful, flexible microcontroller board that strikes a balance between size and functionality. Its compatibility with the Arduino IDE, coupled with a rich set of features, makes it an excellent choice for both beginners and experienced developers. Whether used for educational purposes, DIY projects, or professional prototyping, the Arduino Nano provides a reliable and versatile platform for a myriad of applications.
 
+
+## wiring diagram
+![Alt text](https://github.com/Rohan-Ghorpade/SmartPhone_Oscilloscope/blob/0673c2acaec3ecddd24f816dc5e0246e280783e0/wiring.jpg)
+
+Arduino Pin	Connected to
+
+D14	Connected to RS of LCD
+
+D15	Connected to RN of LCD
+
+D4	Connected to D4 of LCD
+
+D3	Connected to D5 of LCD
+
+D6	Connected to D6 of LCD
+
+D7	Connected to D7 of LCD
+
+D10	Connect to Rotary Encoder 2
+
+D11	Connect to Rotary Encoder 3
+
+D12	Connect to Rotary Encoder 4
+
+D9	Outputs square wave
+
+D2	Connect to D9 of Arduino
+
+D5	Outputs SPWM then converted to sine
+
+## Producing Square Wave with Variable Frequency
+People who are using Arduino might be familiar that Arduino can produce PWM signals simply by using the analog write function. But this function is limited only to control the duty cycle of the PWM signal and not the frequency of the signal. But for a waveform generator we need a PWM signal whose frequency can be controlled. This can be done by directly controlling the Timers of the Arduino and toggling a GPIO pin based on it. But there are some pre-built libraries which do just the same and can be used as such. The library that we are using is the Arduino PWM Frequency Library. We will discuss more about this library in the coding section.
+ 
+There are some drawbacks with this library as well, because the library alters the default Timer 1 and Timer 2 settings in Arduino. Hence you will no longer be able to use servo library or any other timer related library with your Arduino. Also the analog write function on pins 9,10,11 & 13 uses Timer 1 and Timer 2 hence you will not be able to produce SPWM on those pins.
+The advantage of this library is that it does not disturb the Timer 0 of your Arduino, which is more vital than Timer 1 and Timer 2. Because of this you are free to use the delay function and millis() function without any problem. Also the pins 5 and 6 are controlled by Timer 0 hence we won’t be having problem in using analog write or servo control operation on those pins. Initially it took some time for me to figure this out and that is why the wiring is messed up a bit.
+Here we have also built one Simple Square waveform generator, but to change the frequency of waveform you have to replace Resistor or capacitor, and it will hard to get the required frequency.
+
+![Alt text](https://github.com/Rohan-Ghorpade/SmartPhone_Oscilloscope/blob/91e7bc15310c5136febebdf25425baf0f7c58390/waveform_interface.jpg)
+
+## Oscilloscope Screen & Interfaces
+
+1. Install the Scoppy Android App
+Install the Scoppy Android app from the Play Store.
+2. Install the firmware onto your Pico
+Download the firmware onto your computer. It is here: pico-scoppy-v8.uf2.
+Press the bootsel button on your Pico and connect it to your computer. Copy the uf2 file onto your Pico. The onboard LED should start blinking.
+3. Connect the Pico to your Phone/Tablet
+Attach the OTG adapter/cable to the USB input of the Android device. The other end attaches to the USB cable you have connected to your Pico.
+4. Start Scoppy
+Attach the +ve output of your signal source to GPIO26 of the Pico and the ground to gnd. This will allow you to measure signals between 0V and 3.3V. Of course, the signal voltage should be within the allowed range of the ADC pins of the RP2040. For Channel 2, connect the signal to GPIO27.
+If you don’t have a suitable signal source you can view the test signal on GPIO 22 by connecting it directly to the ADC pins (GPIO 26 and 27). GPIO 22 is a 1kHz square wave with a duty cycle of 50%.
+Here is the interface of Scoppy Oscilloscope. The screen looks similar to that of the oscilloscope. On the right bottom, there is an option to select the input signal. The input signal can be fed via a USB port. But for demonstration, the app developer has given a demo signal. The demo signal is in the form of the sine wave which has a frequency of 50Hz.
+
+![Alt text](https://github.com/Rohan-Ghorpade/SmartPhone_Oscilloscope/blob/8e0c480873361d2e797e2f597edfc7f4bff8ef21/scoopy_app_interface.jpg)
+
+ 
+You can slide left and right and see the signal performance. On the right side, the horizontal and vertical adjustment options are available. The trigger option is also there for looking up the signal. You can select off, auto, and normal mode under the trigger function. From here time per division can be manually adjusted. Similarly, you can also adjust the volt per division functionality. To learn more about other functionality, you can manually verify all other functions.
+The oscilloscope is a dual-channel oscilloscope where multiple signals can be read. Each of the channels can be turned On or Off and measurements parameters can be adjusted. For the demo signal, you can use both the channel1 and channel2 signals. But if you switch the mode to USB, you will only get 1 channel. To use the 2nd channel, you need to upgrade to the premium version. The app is so good that you can pay an extra amount to get another channel too. Anyway, we will only be using a single channel for testing our signal.
+Now the question is how to feed an external signal to a DIY Smartphone Oscilloscope? For this, we will use a very high-value resistor called 100K resistor and connect it across the GP26 Pin. This will protect the Pi Pico from over current. Similarly, we need a pair of 1K resistors. One resistor should be connected to the GND pin and another one to the 3.3V pin. Then join the other end of the resistor together. We are doing this because we need to measure both the negative and positive signals.
+
+Here is a schematic for the application. We will feed the signal from the function generator to this GP26 pin via a 100K resistor. And the other Pin is the virtual ground pin. While supplying an input signal, both these pins are used.
+
+We need this OTG device to connect the Pi Pico to Smartphone. This OTG is easily available in the market. Connect the USB OTG to your Smartphone and another end to the Raspberry Pi Pico Board. On your smartphone, you will see a pop-up window appearing. It will ask to allow scoppy to access the Pico. Click on OK. 
+
+![Alt text](https://github.com/Rohan-Ghorpade/SmartPhone_Oscilloscope/blob/8e0c480873361d2e797e2f597edfc7f4bff8ef21/scoopy_app_connecting.jpg)
+
+
+Testing External Signals
+We need a function generator here to test this DIY Smartphone Oscilloscope. But I don’t have a function generator. So I designed a signal generator using Arduino and a Rotary encoder. Using this function generator I can generate a square wave with variable frequency. You can also buy an 8$ XR2206 Function Generator Assembly kit.
+
+
+
+## 🎓 Educational Impact
+
+- Provides hands-on learning in microcontroller programming
+- Teaches principles of signal analysis and waveform synthesis
+- Promotes affordable electronics experimentation
+
+
+## 📚 References
+
+- [Scoppy GitHub](https://github.com/stonez56/scoppy)
+- [Arduino PWM Frequency Library](https://playground.arduino.cc/Code/FrequencyTimer2/)
+- Tutorials from HowToElectronics, Instructables, and Tom’s Hardware
+
+
+## 🧪 Future Improvements
+
+- Add triangular/sawtooth waveform support
+- Use DAC for smoother sine waves
+- Upgrade to dual-channel oscilloscope support (Scoppy Premium)
+
+
+## 📸 iamges
+
+![Alt text](https://github.com/Rohan-Ghorpade/SmartPhone_Oscilloscope/blob/b7865bcdf7431f0efa98162b84a360588cccba8e/main_images.jpg)
 
 
 
