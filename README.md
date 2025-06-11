@@ -14,13 +14,14 @@ Theoretical Background
 2. Types of Oscilloscopes
 •	Analog Oscilloscopes: These use cathode ray tubes (CRTs) to display signals. They are known for their continuous signal representation but are largely obsolete due to digital advancements.
 •	Digital Oscilloscopes: These capture and digitize signals using analog-to-digital converters (ADCs). They offer advanced features like storage, signal processing, and multiple trigger options, making them more versatile and widely used today.
+https://github.com/Rohan-Ghorpade/SmartPhone_Oscilloscope/blob/b3ae37bd45f7daddf93e395d8f62f080b0f9a5c2/cro_Cathode%20Ray%20Oscilloscope.jpg
 
-3. Key Parameters
+4. Key Parameters
 •	Time Base: Determines how the horizontal axis (time) is scaled. It affects the display of signal duration and waveform details.
 •	Sampling Rate: The rate at which the oscilloscope captures signal samples. Higher sampling rates provide better resolution and accuracy.
 •	Bandwidth: The range of frequencies an oscilloscope can accurately measure. Higher bandwidth allows the measurement of faster signals.
 •	Triggering: A feature that stabilizes the waveform display by initiating sampling at a specific point in the signal. It helps in capturing repetitive signals and viewing transient events.
-4. Applications Oscilloscopes are used in various applications, including:
+5. Applications Oscilloscopes are used in various applications, including:
 •	Troubleshooting Electronic Devices: Identifying faults by analyzing signal behavior.
 •	Design and Development: Testing and refining electronic circuits and systems.
 •	Educational Purposes: Teaching concepts of signal processing and electronics.
