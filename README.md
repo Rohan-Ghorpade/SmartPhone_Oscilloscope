@@ -225,7 +225,7 @@ We need a function generator here to test this DIY Smartphone Oscilloscope. But 
 - Upgrade to dual-channel oscilloscope support (Scoppy Premium)
 
 
-## 📸 iamges
+## 📸 images
 
 ![Alt text](https://github.com/Rohan-Ghorpade/SmartPhone_Oscilloscope/blob/b7865bcdf7431f0efa98162b84a360588cccba8e/main_images.jpg)
 
